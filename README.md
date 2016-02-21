@@ -76,4 +76,4 @@ BenchmarkSort  22.034725137066147  291718.2837528091  0.999999774648206
 
 benchlm can construct the explanatory variables using addition, subtraction, multiplication, division, and also any function of float64's in the math package.  After creating a the model matrix, it uses the LAPACK dgels routine to estimate the model coefficients.  If it can't estimate the coefficients it will produce a "~".
 
-This code is derived from and inspired by rsc's benchstat library.  It is motivated by the need to characterize benchmarks in gonum, particularly the matrix, blas, and lapack libraries.
+This code is derived from and inspired by rsc's [benchstat](https://github.com/rsc/benchstat) library.  It is motivated by the need to characterize benchmarks in gonum, particularly the matrix, blas, and lapack libraries.
