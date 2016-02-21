@@ -20,15 +20,15 @@
 //
 // The file bench.txt contains:
 //
-// PASS
-// BenchmarkSort10-4      	 2000000	       981 ns/op
-// BenchmarkSort100-4     	  200000	      9967 ns/op
-// BenchmarkSort1000-4    	   10000	    180906 ns/op
-// BenchmarkSort10000-4   	    1000	   2269930 ns/op
-// BenchmarkSort100000-4  	      50	  29891719 ns/op
-// BenchmarkSort1000000-4 	       3	 351179975 ns/op
-// BenchmarkSort10000000-4	       1	4274436193 ns/op
-// ok  	github.com/jonlawlor/benchls	149.108s
+//  PASS
+//  BenchmarkSort10-4      	 2000000	       981 ns/op
+//  BenchmarkSort100-4     	  200000	      9967 ns/op
+//  BenchmarkSort1000-4    	   10000	    180906 ns/op
+//  BenchmarkSort10000-4   	    1000	   2269930 ns/op
+//  BenchmarkSort100000-4  	      50	  29891719 ns/op
+//  BenchmarkSort1000000-4 	       3	 351179975 ns/op
+//  BenchmarkSort10000000-4	       1	4274436193 ns/op
+//  ok  	github.com/jonlawlor/benchls	149.108s
 //
 // In these benchmarks, the suffix 10 .. 10000000 indicates how many items are
 // sorted.  benchls can estimate the relationship between the number of elements
