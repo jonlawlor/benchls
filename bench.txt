@@ -1,9 +1,0 @@
-PASS
-BenchmarkSort10-4      	 1000000	      1124 ns/op
-BenchmarkSort100-4     	  200000	      9769 ns/op
-BenchmarkSort1000-4    	   10000	    159611 ns/op
-BenchmarkSort10000-4   	    1000	   2264799 ns/op
-BenchmarkSort100000-4  	      50	  27154540 ns/op
-BenchmarkSort1000000-4 	       5	 304100339 ns/op
-BenchmarkSort10000000-4	       1	3551911651 ns/op
-ok  	github.com/jonlawlor/benchlm	72.221s
