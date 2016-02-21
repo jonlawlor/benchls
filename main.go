@@ -57,7 +57,6 @@
 //    	how to transform the response variable (shorthand) (default "Y")
 //  -ytransform string
 //    	how to transform the response variable (default "Y")
-
 package main
 
 import (
