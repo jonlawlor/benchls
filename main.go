@@ -36,7 +36,7 @@
 // Assuming that the amount of time is proportional to n*log(n) and an offset,
 // we can run benchls with:
 //
-//    $ benchls -vars="(?P<N>\\d+)-\\d+$" -xtransform="math.Log(N) * N, 1.0" bench.txt
+//    $ benchls -vars="/?(?P<N>\\d+)-\\d+$" -xtransform="math.Log(N) * N, 1.0" bench.txt
 //    group \ Y ~    math.Log(N) * N     1.0                R^2
 //    BenchmarkSort  22.034725137066147  291718.2837528091  0.999999774648206
 //
@@ -48,7 +48,7 @@
 //  -response string
 //    	benchmark field to use as a response variable {"NsPerOp", "AllocedBytesPerOp", "AllocsPerOp", "MBPerS"} (default "NsPerOp")
 //  -vars string
-//    	where to find named input variables in the benchmark names (default "(?P<N>\\d+)-\\d+$")
+//    	where to find named input variables in the benchmark names (default "/?(?P<N>\\d+)-\\d+$")
 //  -xt string
 //    	how to construct the explanatory variables from the input variables, separated by commas (shorthand) (default "N, 1.0")
 //  -xtransform string
@@ -91,7 +91,7 @@ var (
 var validYs = []string{"NsPerOp", "AllocedBytesPerOp", "AllocsPerOp", "MBPerS"}
 
 func init() {
-	flag.StringVar(&flagInputMatch, "vars", `(?P<N>\d+)-\d+$`, "where to find named input variables in the benchmark names")
+	flag.StringVar(&flagInputMatch, "vars", `/?(?P<N>\d+)-\d+$`, "where to find named input variables in the benchmark names")
 
 	const (
 		defaultXTransform = "N, 1.0"

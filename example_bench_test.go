@@ -24,7 +24,7 @@ func benchmarkSort(b *testing.B, n int) {
 	}
 }
 
-// replace with subtests
+// replace with subtests in go 1.7?
 
 func BenchmarkSort10(b *testing.B)       { benchmarkSort(b, 10) }
 func BenchmarkSort100(b *testing.B)      { benchmarkSort(b, 100) }
