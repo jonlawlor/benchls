@@ -31,15 +31,33 @@
 //  ok  	github.com/jonlawlor/benchls	149.108s
 //
 // In these benchmarks, the suffix 10 .. 10000000 indicates how many items are
-// sorted.  benchls can estimate the relationship between the number of elements
-// to sort and how long it takes to perform the sort.  Assuming that the amount
-// of time is proportional to n*log(n) and an offset, we can run benchls with:
+// sorted in the benchmark.  benchls can estimate the relationship between the
+// number of elements to sort and how long it takes to perform the sort.
+// Assuming that the amount of time is proportional to n*log(n) and an offset,
+// we can run benchls with:
 //
 //    $ benchls -vars="(?P<N>\\d+)-\\d+$" -xtransform="math.Log(N) * N, 1.0" bench.txt
 //    group \ Y ~    math.Log(N) * N     1.0                R^2
 //    BenchmarkSort  22.034725137066147  291718.2837528091  0.999999774648206
 //
 // Where the coefficient for math.Log(N) * N = 22.03... and the intercept is 291718.28...
+//
+// Other options are:
+//   -html
+//    	print results as an HTML table
+//  -response string
+//    	benchmark field to use as a response variable {"NsPerOp", "AllocedBytesPerOp", "AllocsPerOp", "MBPerS"} (default "NsPerOp")
+//  -vars string
+//    	where to find named input variables in the benchmark names (default "(?P<N>\\d+)-\\d+$")
+//  -xt string
+//    	how to construct the explanatory variables from the input variables, separated by commas (shorthand) (default "N, 1.0")
+//  -xtransform string
+//    	how to construct the explanatory variables from the input variables, separated by commas (default "N, 1.0")
+//  -yt string
+//    	how to transform the response variable (shorthand) (default "Y")
+//  -ytransform string
+//    	how to transform the response variable (default "Y")
+
 package main
 
 import (

@@ -114,7 +114,7 @@ func writeReport(xExprs []*evaluation, yExpr *evaluation, fits map[string]model,
 
 	var buf bytes.Buffer
 	if flagHTML {
-		fmt.Fprintf(&buf, "<style>.benchstat tbody td:nth-child(1n+2) { text-align: right; padding: 0em 1em; }</style>\n")
+		fmt.Fprintf(&buf, "<style>.benchls tbody td:nth-child(1n+2) { text-align: right; padding: 0em 1em; }</style>\n")
 		fmt.Fprintf(&buf, "<table class='benchls'>\n")
 		printRow := func(row *row, tag string) {
 			fmt.Fprintf(&buf, "<tr>")
@@ -128,32 +128,33 @@ func writeReport(xExprs []*evaluation, yExpr *evaluation, fits map[string]model,
 			printRow(row, "td")
 		}
 		fmt.Fprintf(&buf, "</table>\n")
-	}
+	} else {
 
-	// headings
-	row := table[0]
-	for i, s := range row.cols {
-		switch i {
-		case 0:
-			fmt.Fprintf(&buf, "%-*s", max[i], s)
-		default:
-			fmt.Fprintf(&buf, "  %-*s", max[i], s)
-		case len(row.cols) - 1:
-			fmt.Fprintf(&buf, "  %s\n", s)
-		}
-	}
-
-	// data
-	for _, row := range table[1:] {
+		// headings
+		row := table[0]
 		for i, s := range row.cols {
 			switch i {
 			case 0:
 				fmt.Fprintf(&buf, "%-*s", max[i], s)
 			default:
-				fmt.Fprintf(&buf, "  %*s", max[i], s)
+				fmt.Fprintf(&buf, "  %-*s", max[i], s)
+			case len(row.cols) - 1:
+				fmt.Fprintf(&buf, "  %s\n", s)
 			}
 		}
-		fmt.Fprintf(&buf, "\n")
+
+		// data
+		for _, row := range table[1:] {
+			for i, s := range row.cols {
+				switch i {
+				case 0:
+					fmt.Fprintf(&buf, "%-*s", max[i], s)
+				default:
+					fmt.Fprintf(&buf, "  %*s", max[i], s)
+				}
+			}
+			fmt.Fprintf(&buf, "\n")
+		}
 	}
 
 	w.Write(buf.Bytes())
