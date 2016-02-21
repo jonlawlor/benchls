@@ -61,14 +61,14 @@ func (r *row) trim() {
 	}
 }
 
-func writeReport(xExprs []*evaluation, fits map[string]model, rsquares map[string]float64, w io.Writer) {
+func writeReport(xExprs []*evaluation, yExpr *evaluation, fits map[string]model, rsquares map[string]float64, w io.Writer) {
 	// writes the model fits and rsquares to the Writer
 	var table []*row
 	xs := make([]string, len(xExprs))
 	for i, xExpr := range xExprs {
 		xs[i] = xExpr.String()
 	}
-	heading := []string{"group \\ Y ~"}
+	heading := []string{"group \\ " + yExpr.String() + " ~"}
 	heading = append(heading, xs...)
 	heading = append(heading, "R^2")
 	for group, m := range fits {

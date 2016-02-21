@@ -162,7 +162,7 @@ func main() {
 	}
 
 	// generate the report
-	writeReport(xExprs, fits, rsquares, os.Stdout)
+	writeReport(xExprs, yExpr, fits, rsquares, os.Stdout)
 }
 
 func readNames(re *regexp.Regexp) map[string]struct{} {
