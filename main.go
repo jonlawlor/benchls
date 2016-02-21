@@ -43,7 +43,7 @@
 // Where the coefficient for math.Log(N) * N = 22.03... and the intercept is 291718.28...
 //
 // Other options are:
-//   -html
+//  -html
 //    	print results as an HTML table
 //  -response string
 //    	benchmark field to use as a response variable {"NsPerOp", "AllocedBytesPerOp", "AllocsPerOp", "MBPerS"} (default "NsPerOp")
