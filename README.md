@@ -2,6 +2,9 @@
 
 Golang Benchmark Parameterization via Least Squares
 
+[![Build Status](https://travis-ci.org/jonlawlor/benchls.svg?branch=master)](https://travis-ci.org/jonlawlor/benchls)
+[![Coverage Status](https://coveralls.io/repos/github/jonlawlor/benchls/badge.svg?branch=master)](https://coveralls.io/github/jonlawlor/benchls?branch=master)
+[![Go Report Card](https://goreportcard.com/badge/github.com/jonlawlor/benchls)](https://goreportcard.com/report/github.com/jonlawlor/benchls)
 [![GoDoc](https://godoc.org/github.com/jonlawlor/benchls?status.svg)](https://godoc.org/github.com/jonlawlor/benchls)
 
 `go get -u github.com/jonlawlor/benchls`
