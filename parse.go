@@ -22,6 +22,10 @@ import (
 //
 // Doing this in RPN might be kind of dumb.  There may be a better way of
 // evaluating go expressions.
+//
+// Note that only functions of float64s and float64 literals are allowed, with
+// the expection of << and >>, because while those functions can be applied
+// to float64's, it will panic if the amount to shift is not an integer.
 
 // unaryFuncs is the set of functions that will be recognized as math.(func) unary functions.
 var unaryFuncs = map[string]func(float64) float64{

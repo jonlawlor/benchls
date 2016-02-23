@@ -31,6 +31,15 @@ func TestParse(t *testing.T) {
 			wantY:    2.0,
 		}, {
 			inre:     `(?P<N>\d+)-\d+$`,
+			xtrans:   "1.0 / N",
+			xrpn:     [][]string{{"1.0", "N", "/"}},
+			xstrings: []string{"1.0 / N"},
+			ytrans:   "Y / N",
+			vars:     map[string]float64{"N": 0.0, "Y": 1.0},
+			wantX:    []float64{math.Inf(1)},
+			wantY:    math.Inf(1),
+		}, {
+			inre:     `(?P<N>\d+)-\d+$`,
 			xtrans:   "N*N, N, 1.0",
 			xrpn:     [][]string{{"N", "N", "*"}, {"N"}, {"1.0"}},
 			xstrings: []string{"N*N", "N", "1.0"},
