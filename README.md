@@ -1,6 +1,6 @@
 # benchls
 
-Golang Benchmark Parameterization via Least Squares
+Golang Benchmark Performance Curve Fitting via Least Squares
 
 [![Build Status](https://travis-ci.org/jonlawlor/benchls.svg?branch=master)](https://travis-ci.org/jonlawlor/benchls)
 [![Coverage Status](https://coveralls.io/repos/github/jonlawlor/benchls/badge.svg?branch=master)](https://coveralls.io/github/jonlawlor/benchls?branch=master)
