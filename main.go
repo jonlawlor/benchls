@@ -20,15 +20,22 @@
 //
 // The file bench.txt contains:
 //
-//  PASS
-//  BenchmarkSort10-4      	 2000000	       981 ns/op
-//  BenchmarkSort100-4     	  200000	      9967 ns/op
-//  BenchmarkSort1000-4    	   10000	    180906 ns/op
-//  BenchmarkSort10000-4   	    1000	   2269930 ns/op
-//  BenchmarkSort100000-4  	      50	  29891719 ns/op
-//  BenchmarkSort1000000-4 	       3	 351179975 ns/op
-//  BenchmarkSort10000000-4	       1	4274436193 ns/op
-//  ok  	github.com/jonlawlor/benchls	149.108s
+//   PASS
+//   BenchmarkSort10-4            	 1000000	      1008 ns/op
+//   BenchmarkSort100-4           	  200000	      8224 ns/op
+//   BenchmarkSort1000-4          	   10000	    152945 ns/op
+//   BenchmarkSort10000-4         	    1000	   1950999 ns/op
+//   BenchmarkSort100000-4        	      50	  25081946 ns/op
+//   BenchmarkSort1000000-4       	       5	 302228845 ns/op
+//   BenchmarkSort10000000-4      	       1	3631295293 ns/op
+//   BenchmarkStableSort10-4      	 1000000	      1260 ns/op
+//   BenchmarkStableSort100-4     	  100000	     16730 ns/op
+//   BenchmarkStableSort1000-4    	    5000	    362024 ns/op
+//   BenchmarkStableSort10000-4   	     300	   5731738 ns/op
+//   BenchmarkStableSort100000-4  	      20	  88171712 ns/op
+//   BenchmarkStableSort1000000-4 	       1	1205361782 ns/op
+//   BenchmarkStableSort10000000-4	       1	14349613704 ns/op
+//   ok  	github.com/jonlawlor/benchls	138.860s
 //
 // In these benchmarks, the suffix 10 .. 10000000 indicates how many items are
 // sorted in the benchmark.  benchls can estimate the relationship between the
@@ -37,13 +44,16 @@
 // we can run benchls with:
 //
 //    $ benchls -vars="/?(?P<N>\\d+)-\\d+$" -xtransform="math.Log(N) * N, 1.0" bench.txt
-//    group \ Y ~    math.Log(N) * N    1.0             R^2
-//    BenchmarkSort  2.653e+01±1.1e-01  -3e+06±6.6e+06  0.9999895008109141
+//    group \ Y ~          math.Log(N) * N    1.0             R^2
+//    BenchmarkSort        2.254e+01±6.4e-02  -2e+06±3.9e+06  0.9999949426719544
+//    BenchmarkStableSort  8.906e+01±1.8e-01  -7e+06±1.1e+07  0.9999973642760738
 //
-// Where the coefficient for math.Log(N) * N = 2.653e+01 and the intercept is -3e+06.
-// The numbers after the ``±'' indicate the 95% confidence interval.  In this case
-// the first coefficient is significant to 3 decimal places, but the intercept
-// is not significant.
+// Where the coefficient for BenchMarkSort's math.Log(N) * N is 2.653e+01 and the
+// intercept is -3e+06.  The numbers after the ``±'' indicate the 95% confidence
+// interval.  In this case the first coefficient is significant to 3 decimal
+// places, but the intercept is not significant.  We can also see that in this
+// particular benchmark comparing sort.Sort of []int to sort.Stable of []int,
+// sort.Stable takes approximately 4x as long as sort.Sort.
 //
 // Other options are:
 //  -html

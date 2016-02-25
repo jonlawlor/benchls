@@ -23,7 +23,7 @@ BenchmarkSort10000-4   	    1000	   2269930 ns/op
 BenchmarkSort100000-4  	      50	  29891719 ns/op
 BenchmarkSort1000000-4 	       3	 351179975 ns/op
 BenchmarkSort10000000-4	       1	4274436193 ns/op
-ok  	github.com/jonlawlor/benchlm	149.108s
+ok  	github.com/jonlawlor/benchls	149.108s
 `
 	yVar := "NsPerOp"
 	r := strings.NewReader(s)
