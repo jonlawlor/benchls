@@ -97,7 +97,6 @@ func writeReport(xExprs []*evaluation, yExpr *evaluation, fits map[string]model,
 				format := "%.1e±%.1e" // if b is not significant
 				if logDiff := bLog - cintLog + 1; logDiff > 0 {
 					format = "%." + strconv.Itoa(int(logDiff)) + "e±%.1e"
-					fmt.Println(format)
 				}
 				coeffs[i+1] = fmt.Sprintf(format, b, cint)
 			}
