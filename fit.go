@@ -6,6 +6,7 @@ package main
 
 import (
 	"log"
+	"math"
 	"regexp"
 	"strconv"
 	"strings"
@@ -13,6 +14,7 @@ import (
 	"github.com/gonum/blas"
 	"github.com/gonum/blas/blas64"
 	"github.com/gonum/lapack/lapack64"
+	"github.com/gonum/matrix/mat64"
 	"golang.org/x/tools/benchmark/parse"
 )
 
@@ -116,9 +118,11 @@ func estimate(s samp) model {
 }
 
 // calculate R squared
-func calcR2(m model, s samp) float64 {
+func stats(m model, s samp) (r2 float64, cint []float64) {
 	RSS := 0.0
 	YSS := 0.0
+
+	// also consumed degrees of freedom
 	stride := len(s.x) / len(s.y)
 	for i, y := range s.y {
 		YSS += y * y
@@ -128,5 +132,17 @@ func calcR2(m model, s samp) float64 {
 		}
 		RSS += (yHat - y) * (yHat - y)
 	}
-	return 1.0 - RSS/YSS
+	r2 = 1.0 - RSS/YSS
+
+	mse := RSS / float64(len(s.y)-stride)
+	X := mat64.NewDense(len(s.y), stride, s.x)
+	XTX := mat64.NewDense(stride, stride, make([]float64, stride*stride))
+	XTX.Mul(X.T(), X)
+	XTX.Inverse(XTX)
+	cint = make([]float64, stride)
+	for i := 0; i < stride; i++ {
+		cint[i] = conf95(math.Sqrt(XTX.At(i, i)*mse), len(s.y)-stride)
+	}
+
+	return
 }

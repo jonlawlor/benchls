@@ -40,6 +40,8 @@ import (
 	"fmt"
 	"html"
 	"io"
+	"math"
+	"strconv"
 	"unicode/utf8"
 )
 
@@ -61,7 +63,7 @@ func (r *row) trim() {
 	}
 }
 
-func writeReport(xExprs []*evaluation, yExpr *evaluation, fits map[string]model, rsquares map[string]float64, w io.Writer) {
+func writeReport(xExprs []*evaluation, yExpr *evaluation, fits map[string]model, rsquares map[string]float64, cints map[string][]float64, w io.Writer) {
 	// writes the model fits and rsquares to the Writer
 	var table []*row
 	xs := make([]string, len(xExprs))
@@ -88,7 +90,16 @@ func writeReport(xExprs []*evaluation, yExpr *evaluation, fits map[string]model,
 			}
 		} else {
 			for i, b := range m {
-				coeffs[i+1] = fmt.Sprintf("%g", b)
+				// determine if we should truncate coefficients due to confidence
+				cint := cints[group][i]
+				bLog := math.Log10(math.Abs(b))
+				cintLog := math.Log10(cint)
+				format := "%.1e±%.1e" // if b is not significant
+				if logDiff := bLog - cintLog + 1; logDiff > 0 {
+					format = "%." + strconv.Itoa(int(logDiff)) + "e±%.1e"
+					fmt.Println(format)
+				}
+				coeffs[i+1] = fmt.Sprintf(format, b, cint)
 			}
 			coeffs[len(m)+1] = fmt.Sprintf("%g", rsquares[group])
 		}

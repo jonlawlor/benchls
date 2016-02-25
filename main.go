@@ -169,17 +169,19 @@ func main() {
 	// estimate the parameters
 	fits := make(map[string]model)
 	rsquares := make(map[string]float64)
+	cints := make(map[string][]float64)
+
 	for g, samp := range samps {
 		fits[g] = estimate(samp)
 		if fits[g] == nil {
 			continue
 		}
 		// determine goodness of fit
-		rsquares[g] = calcR2(fits[g], samp)
+		rsquares[g], cints[g] = stats(fits[g], samp)
 	}
 
 	// generate the report
-	writeReport(xExprs, yExpr, fits, rsquares, os.Stdout)
+	writeReport(xExprs, yExpr, fits, rsquares, cints, os.Stdout)
 }
 
 func readNames(re *regexp.Regexp) map[string]struct{} {

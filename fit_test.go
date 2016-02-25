@@ -56,7 +56,7 @@ ok  	github.com/jonlawlor/benchlm	149.108s
 			t.Errorf("expected fit[%d] = %f, got %f", i, wantFit[i], f)
 		}
 	}
-	if r2 := calcR2(fit, samps["BenchmarkSort"]); r2 < .999 || r2 > 1.0 {
+	if r2, _ := stats(fit, samps["BenchmarkSort"]); r2 < .999 || r2 > 1.0 {
 		t.Errorf("expected r2 approximately %f, got %f", .999, r2)
 	}
 }
