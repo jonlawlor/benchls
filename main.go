@@ -37,10 +37,13 @@
 // we can run benchls with:
 //
 //    $ benchls -vars="/?(?P<N>\\d+)-\\d+$" -xtransform="math.Log(N) * N, 1.0" bench.txt
-//    group \ Y ~    math.Log(N) * N     1.0                R^2
-//    BenchmarkSort  22.034725137066147  291718.2837528091  0.999999774648206
+//    group \ Y ~    math.Log(N) * N    1.0             R^2
+//    BenchmarkSort  2.653e+01±1.1e-01  -3e+06±6.6e+06  0.9999895008109141
 //
-// Where the coefficient for math.Log(N) * N = 22.03... and the intercept is 291718.28...
+// Where the coefficient for math.Log(N) * N = 2.653e+01 and the intercept is -3e+06.
+// The numbers after the ``±'' indicate the 95% confidence interval.  In this case
+// the first coefficient is significant to 3 decimal places, but the intercept
+// is not significant.
 //
 // Other options are:
 //  -html

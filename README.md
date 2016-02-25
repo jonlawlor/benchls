@@ -73,10 +73,10 @@ You can use benchls to estimate the relationship between the number of sorted it
 
 ```bash
 $ benchls -vars="/?(?P<N>\\d+)-\\d+$" -xtransform="math.Log(N) * N, 1.0" bench.txt
-group \ Y ~    math.Log(N) * N     1.0                R^2
-BenchmarkSort  22.034725137066147  291718.2837528091  0.999999774648206
+group \ Y ~    math.Log(N) * N    1.0             R^2
+BenchmarkSort  2.653e+01±1.1e-01  -3e+06±6.6e+06  0.9999895008109141
 ```
 
-benchlm's -xtransform and -ytransform options can construct the explanatory and response variables using addition, subtraction, multiplication, division, literal float64's, any function of float64's in the math package, and any named substring in the -vars flag.  After creating a the model matrix, it uses the LAPACK dgels routine to estimate the model coefficients.  If it can't estimate the coefficients it will produce a "~".
+benchls's -xtransform and -ytransform options can construct the explanatory and response variables using addition, subtraction, multiplication, division, literal float64's, any function of float64's in the math package, and any named substring in the -vars flag.  After creating a the model matrix, it uses the LAPACK dgels routine to estimate the model coefficients.  If it can't estimate the coefficients it will produce a "~".  The number to the right of the "±" indicates the 95% confidence interval of the coefficient.
 
-This code is derived from and inspired by rsc's [benchstat](https://github.com/rsc/benchstat) library.  It is motivated by the need to characterize benchmarks in [gonum](https://github.com/gonum), particularly the [matrix](https://github.com/gonum/matrix), [blas](https://github.com/gonum/blas), and [lapack](https://github.com/gonum/lapack) libraries.
+This code is in part derived from and inspired by rsc's [benchstat](https://github.com/rsc/benchstat) library.  It is motivated by the need to characterize benchmarks in [gonum](https://github.com/gonum), particularly the [matrix](https://github.com/gonum/matrix), [blas](https://github.com/gonum/blas), and [lapack](https://github.com/gonum/lapack) libraries.
