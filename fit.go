@@ -15,6 +15,7 @@ import (
 	"github.com/gonum/blas/blas64"
 	"github.com/gonum/lapack/lapack64"
 	"github.com/gonum/matrix/mat64"
+	"github.com/jonlawlor/parsefloat"
 	"golang.org/x/tools/benchmark/parse"
 )
 
@@ -25,7 +26,7 @@ type samp struct {
 
 // sampleGroup finds the samples in the benchmark.  The resulting samp x and y will
 // not be in a stable order.
-func sampleGroup(benchSet parse.Set, inre *regexp.Regexp, xExprs []*evaluation, yExpr *evaluation, yVar string) map[string]samp {
+func sampleGroup(benchSet parse.Set, inre *regexp.Regexp, xExprs []parsefloat.Expression, yExpr parsefloat.Expression, yVar string) map[string]samp {
 	samps := make(map[string]samp)
 Bench:
 	for name, bs := range benchSet {
@@ -54,7 +55,7 @@ Bench:
 		// eval x
 		x := make([]float64, len(xExprs))
 		for i, xExpr := range xExprs {
-			x[i] = xExpr.value(vars)
+			x[i] = xExpr.Eval(vars)
 		}
 
 		s := samps[groupName]
@@ -74,7 +75,7 @@ Bench:
 			}
 
 			// eval y
-			y := yExpr.value(vars)
+			y := yExpr.Eval(vars)
 			s.x = append(s.x, x...)
 			s.y = append(s.y, y)
 		}

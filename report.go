@@ -43,6 +43,8 @@ import (
 	"math"
 	"strconv"
 	"unicode/utf8"
+
+	"github.com/jonlawlor/parsefloat"
 )
 
 type row struct {
@@ -63,7 +65,7 @@ func (r *row) trim() {
 	}
 }
 
-func writeReport(xExprs []*evaluation, yExpr *evaluation, fits map[string]model, rsquares map[string]float64, cints map[string][]float64, w io.Writer) {
+func writeReport(xExprs []parsefloat.Expression, yExpr parsefloat.Expression, fits map[string]model, rsquares map[string]float64, cints map[string][]float64, w io.Writer) {
 	// writes the model fits and rsquares to the Writer
 	var table []*row
 	xs := make([]string, len(xExprs))
