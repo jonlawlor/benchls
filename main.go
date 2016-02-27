@@ -80,6 +80,7 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/jonlawlor/parsefloat"
 	"golang.org/x/tools/benchmark/parse"
 )
 
@@ -139,18 +140,18 @@ func main() {
 
 	// find the named variables in the input
 	inre := regexp.MustCompile(flagInputMatch)
-	varNames := readNames(inre)
+	varNames := parsefloat.NamedVars(inre)
 	if _, exists := varNames["Y"]; exists {
 		log.Fatal("`Y` is reserved and cannot be used as a named expression in vars.")
 	}
 	// construct the functions for explanatory and response
-	xExprs, err := parseX(varNames, flagXTransform)
+	xExprs, err := parsefloat.NewSlice("float64{"+flagXTransform+"}", varNames)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	varNames["Y"] = struct{}{}
-	yExpr, err := parseY(varNames, flagYTransform)
+	yExpr, err := parsefloat.New(flagYTransform, varNames)
 	if err != nil {
 		log.Fatal(err)
 	}

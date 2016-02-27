@@ -10,6 +10,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/jonlawlor/parsefloat"
 	"golang.org/x/tools/benchmark/parse"
 )
 
@@ -32,19 +33,19 @@ ok  	github.com/jonlawlor/benchls	149.108s
 		panic(err)
 	}
 	inre := regexp.MustCompile(`(?P<N>\d+)-\d+$`)
-	names := readNames(inre)
+	names := parsefloat.NamedVars(inre)
 
 	// Sort isn't O(n) obviously, but this was easy to verify.
 	xtrans := "N, 1.0"
 	ytrans := "Y"
 	wantFit := []float64{428.2534163147418, -1.4343020792698523e+07}
 
-	xExprs, err := parseX(names, xtrans)
+	xExprs, err := parsefloat.NewSlice("float64{"+xtrans+"}", names)
 	if err != nil {
 		panic(err)
 	}
 	names["Y"] = struct{}{}
-	yExpr, err := parseY(names, ytrans)
+	yExpr, err := parsefloat.New(ytrans, names)
 	if err != nil {
 		panic(err)
 	}
