@@ -88,7 +88,7 @@ func usage() {
 	fmt.Fprintf(os.Stderr, "usage: benchls [options] bench.txt\n")
 	fmt.Fprintf(os.Stderr, "performs a least squares fit on parameterized benchmarks\n")
 	fmt.Fprintf(os.Stderr, "example:\n")
-	fmt.Fprintf(os.Stderr, "   benchls -vars=\"(?P<M>\\d+)x(?P<N>\\d+)-\\d+$\" -xt=\"math.Log(M), math.Log(N), 1.0\" -yt=\"math.Log(Y)\"\n")
+	fmt.Fprintf(os.Stderr, "   benchls -vars=\"(?P<M>\\d+)x(?P<N>\\d+)-\\d+$\" -xt=\"math.Log(M), math.Log(N), 1.0\" -yt=\"math.Log(Y)\" bench.txt\n")
 	fmt.Fprintf(os.Stderr, "options:\n")
 	flag.PrintDefaults()
 	os.Exit(2)
