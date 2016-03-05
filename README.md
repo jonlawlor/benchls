@@ -7,7 +7,7 @@ Go Benchmark Performance Curve Fitting via Least Squares
 [![Go Report Card](https://goreportcard.com/badge/github.com/jonlawlor/benchls)](https://goreportcard.com/report/github.com/jonlawlor/benchls)
 [![GoDoc](https://godoc.org/github.com/jonlawlor/benchls?status.svg)](https://godoc.org/github.com/jonlawlor/benchls)
 
-`go get -u github.com/jonlawlor/benchls`
+`go get [-u] github.com/jonlawlor/benchls`
 
 With the likely support of [sub-benchmarks](https://github.com/golang/proposal/blob/master/design/12166-subtests.md), I think we're going to see quite a few benchmarks that measure performance over a range of parameters, like:
 
