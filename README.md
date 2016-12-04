@@ -28,7 +28,7 @@ benchFoo/10000x1
 
 Where the number(s) at the end indicates a size of input, number of iterations, or what have you.  The motivation is usually to see the performance over a range of inputs.
 
-benchls takes benchmark output in that form, and fits the performance against a function of those parameters.  Here's an example:
+benchls takes benchmark output in that form and fits the performance against a function of those parameters.  Here's an example:
 
 ```golang
 // This is just for illustration...
